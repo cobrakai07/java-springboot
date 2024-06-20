@@ -1,5 +1,7 @@
 package com.cobra.SpringLearning.job;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -20,18 +22,20 @@ public class JobController {
 
 
     @GetMapping("/jobs")
-    public List<Job> findAll(){
-        return jobService.findAll();
+    public ResponseEntity<List<Job>>  findAll(){
+        return new ResponseEntity<>(jobService.findAll(),HttpStatus.OK);
     }
 
     @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job){
+    public ResponseEntity<String> createJob(@RequestBody Job job){
         jobService.createJob(job);
-        return "Job Added Successfully";
+        return new ResponseEntity<>("Job Added Successfully",HttpStatus.CREATED);
     }
 
     @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable Long id){
-        return jobService.getJobById(id);
+    public ResponseEntity<Job> getJobById(@PathVariable Long id){
+        Job j=jobService.getJobById(id);
+        if(j!=null) return new ResponseEntity<>(j, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

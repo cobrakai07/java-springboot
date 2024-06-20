@@ -27,7 +27,7 @@ public class JobServiceImplement implements JobService{
         for(Job j:jobs){
             if(j.getId().equals(id))return j;
         }
-        return new Job("No Job Found","NO Job", (long) -1, (long) 000L,(long)000,"Nowhere");
+        return null;
     }
 
 
