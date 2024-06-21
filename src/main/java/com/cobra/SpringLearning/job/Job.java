@@ -1,19 +1,29 @@
 package com.cobra.SpringLearning.job;
 
+import jakarta.persistence.*;
+
+@Entity
+//@Table(name = "job_table")
 public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
     private String title;
     private String description;
     private Long minSalary;
-    private Long manSalary;
+    private Long maxSalary;
     private String location;
 
-    public Job(String description, String title, Long id, Long minSalary, Long manSalary, String location) {
+    public  Job(){
+        //needed for JPA
+        //JPA needed default constructor
+    }
+    public Job(String description, String title, Long id, Long minSalary, Long maxSalary, String location) {
         this.description = description;
         this.title = title;
         this.id = id;
         this.minSalary = minSalary;
-        this.manSalary = manSalary;
+        this.maxSalary = maxSalary;
         this.location = location;
     }
 
@@ -49,12 +59,12 @@ public class Job {
         this.minSalary = minSalary;
     }
 
-    public Long getManSalary() {
-        return manSalary;
+    public Long getMaxSalary() {
+        return maxSalary;
     }
 
-    public void setManSalary(Long manSalary) {
-        this.manSalary = manSalary;
+    public void setMaxSalary(Long maxSalary) {
+        this.maxSalary = maxSalary;
     }
 
     public String getLocation() {
