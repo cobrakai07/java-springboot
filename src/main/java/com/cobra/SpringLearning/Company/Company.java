@@ -16,8 +16,15 @@ public class Company {
 
     @OneToMany
     private List<Job> jobs;
-
     //private List<Review>
+
+    public List<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(List<Job> jobs) {
+        this.jobs = jobs;
+    }
 
     public Company(){
     }
