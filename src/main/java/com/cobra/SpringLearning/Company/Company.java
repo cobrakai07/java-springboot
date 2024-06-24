@@ -1,6 +1,8 @@
 package com.cobra.SpringLearning.Company;
 
+import com.cobra.SpringLearning.Review.Review;
 import com.cobra.SpringLearning.job.Job;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,9 +16,20 @@ public class Company {
     private String name;
     private String description;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
-    //private List<Review>
+
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public List<Job> getJobs() {
         return jobs;

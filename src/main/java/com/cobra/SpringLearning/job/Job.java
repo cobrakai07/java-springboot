@@ -1,5 +1,6 @@
 package com.cobra.SpringLearning.job;
 
+import com.cobra.SpringLearning.Company.Company;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,9 @@ public class Job {
     private Long minSalary;
     private Long maxSalary;
     private String location;
+
+    @ManyToOne
+    private Company company;
 
     public  Job(){
         //needed for JPA
@@ -73,5 +77,13 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }
